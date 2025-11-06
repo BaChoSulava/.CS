@@ -1,5 +1,8 @@
 namespace _20251106
 {
+    // gamiketet igive amocanebi oyond or ganzomilebian masivze.
+    // sum avg min max
+    // aseve luwebi da kentebi cal calke
     internal class Program
     {
         static void Main(string[] args)
@@ -22,9 +25,11 @@ namespace _20251106
             int min = limitUp;
             int? evenMax = null;
             int? evenMin = null;
+            bool evenExists = false;
             int evenSum = 0;
             int? oddMax = null;
             int? oddMin = null;
+            bool oddExists = false;
             int oddSum = 0;
 
             Console.WriteLine();
@@ -42,12 +47,14 @@ namespace _20251106
 
                     if (x[i,j] % 2 == 0)
                     {
+                        evenExists = true;
                         evenSum += x[i, j];
                         if (evenMax == null || x[i, j] > evenMax) evenMax = x[i, j];
                         if (evenMin == null || x[i, j] < evenMin) evenMin = x[i, j];
                     }
                     else
                     {
+                        oddExists = true;
                         oddSum += x[i, j];
                         if (oddMax == null || x[i, j] > oddMax) oddMax = x[i, j];
                         if (oddMin == null || x[i, j] < oddMin) oddMin = x[i, j];
@@ -71,21 +78,24 @@ namespace _20251106
             Console.WriteLine(min);
 
             Console.Write("Even Sum: ");
-            Console.WriteLine(evenMin);
+            Console.WriteLine(evenSum);
 
-            Console.Write("Even Sum: ");
-            Console.WriteLine(evenMin);
+            Console.Write("Odd Sum: ");
+            Console.WriteLine(oddSum);
 
 
-            if (evenMax.HasValue)
+            if (evenExists)
             {
-                Console.Write("Even Max: ");
-                Console.WriteLine(evenMax);
-            }
-            else if (evenMin.HasValue)
-            {
-                Console.Write("Even Min: ");
-                Console.WriteLine(evenMin);
+                if (evenMax.HasValue)
+                {
+                    Console.Write("Even Max: ");
+                    Console.WriteLine(evenMax);
+                }
+                if (evenMin.HasValue)
+                {
+                    Console.Write("Even Min: ");
+                    Console.WriteLine(evenMin);
+                }
             }
             else
             {
@@ -93,25 +103,24 @@ namespace _20251106
                 Console.Write("there is no Even");
             }
 
-            if (oddMax.HasValue)
+            if (oddExists)
             {
-                Console.Write("Odd Max: ");
-                Console.WriteLine(oddMax);
-            }
-            else if (oddMin.HasValue)
-            {
-                Console.Write("odd Min: ");
-                Console.WriteLine(oddMin);
+                if (oddMax.HasValue)
+                {
+                    Console.Write("Odd Max: ");
+                    Console.WriteLine(oddMax);
+                }
+                if (oddMin.HasValue)
+                {
+                    Console.Write("odd Min: ");
+                    Console.WriteLine(oddMin);
+                }
             }
             else
             {
 
                 Console.Write("there is no Odd");
             }
-
-            // gamiketet igive amocanebi oyond or ganzomilebian masivze.
-            // sum avg min max
-            // aseve luwebi da kentebi cal calke
         }
     }
 }
