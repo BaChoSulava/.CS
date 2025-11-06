@@ -72,7 +72,7 @@ namespace _20251106
                 Console.WriteLine(sum);
 
                 Console.Write("Avrg: ");
-                Console.WriteLine(sum / (x.GetLength(0) * x.GetLength(1)));
+                Console.WriteLine((float)sum / (x.GetLength(0) * x.GetLength(1)));
 
                 Console.Write("Max: ");
                 Console.WriteLine(max);
