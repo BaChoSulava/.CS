@@ -91,38 +91,38 @@ namespace _20251106
                 {
                     if (evenMax.HasValue)
                     {
-                        Console.Write("Even Max: ");
+                        Console.Write("There is Even number and it's Max value is: ");
                         Console.WriteLine(evenMax);
                     }
                     if (evenMin.HasValue)
                     {
-                        Console.Write("Even Min: ");
+                        Console.Write("There is Even number and it's Min value is: ");
                         Console.WriteLine(evenMin);
                     }
                 }
                 else
                 {
 
-                    Console.Write("there is no Even");
+                    Console.Write("there is no Even number");
                 }
 
                 if (oddExists)
                 {
                     if (oddMax.HasValue)
                     {
-                        Console.Write("Odd Max: ");
+                        Console.Write("There is Odd number and it's Max value is: ");
                         Console.WriteLine(oddMax);
                     }
                     if (oddMin.HasValue)
                     {
-                        Console.Write("odd Min: ");
+                        Console.Write("There is Odd number and it's Min value is: ");
                         Console.WriteLine(oddMin);
                     }
                 }
                 else
                 {
 
-                    Console.Write("there is no Odd");
+                    Console.Write("there is no Odd number");
                 }
 
                 Console.WriteLine(); 
@@ -133,6 +133,7 @@ namespace _20251106
                 Console.WriteLine("-------------------");
                 Console.WriteLine();
             }
+            
         }
     }
 }
