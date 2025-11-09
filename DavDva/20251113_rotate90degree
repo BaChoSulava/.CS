@@ -1,0 +1,36 @@
+namespace _20251109
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int a = 4, b = 4;
+
+            int[,] firstArray = new int[a, b];
+            for (int i = 0; i < firstArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < firstArray.GetLength(1); j++)
+                {
+                    firstArray[i, j] = Random.Shared.Next(10, 50);
+                    Console.Write(firstArray[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine();
+
+            int[,] secondArray = new int[b, a];
+            for (int i =0; i < secondArray.GetLength(1); i++)
+            {
+                for (int j=0; j< secondArray.GetLength(0); j++)
+                {
+                    secondArray[i, j] = firstArray[j, i];
+                    Console.Write(secondArray[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            // დავწეროთ კოდი რომელიც შემოაბრუნებს მასივს 90 გრადუსით
+        }
+    }
+}
