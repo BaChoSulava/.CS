@@ -2,10 +2,13 @@ namespace _20251109
 {
     internal class Program
     {
+        // TODO: დავწეროთ კოდი რომელიც შემოაბრუნებს მასივს 90 გრადუსით.
         static void Main(string[] args)
         {
+            // შემოგვაქვს სიმრავლის განზომილებები.
             int a = 4, b = 4;
 
+            // ვქმნით სიმრავლეს და ვავსებთ ელემენტებით.
             int[,] firstArray = new int[a, b];
             for (int i = 0; i < firstArray.GetLength(0); i++)
             {
@@ -19,18 +22,17 @@ namespace _20251109
 
             Console.WriteLine();
 
+            // ვქმნით მეორე სიმრავლეს და 90-გრადუსით ვავსებთ მას 
             int[,] secondArray = new int[b, a];
-            for (int i =0; i < secondArray.GetLength(1); i++)
+            for (int i = 0; i < secondArray.GetLength(1); i++)
             {
-                for (int j=0; j< secondArray.GetLength(0); j++)
+                for (int j = secondArray.GetLength(0) - 1; j >= 0; j--)
                 {
                     secondArray[i, j] = firstArray[j, i];
                     Console.Write(secondArray[i, j] + " ");
                 }
                 Console.WriteLine();
             }
-
-            // დავწეროთ კოდი რომელიც შემოაბრუნებს მასივს 90 გრადუსით
         }
     }
 }
