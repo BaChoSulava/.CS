@@ -1,11 +1,8 @@
 namespace _20251113
 {
+    // TODO: დაწერეთ პროგრამა რომელიც შეასრულებს შემდეგს: მომიძებეთ და დამიწერეთ ეკრანზე რიცხვი რომელიც ყველაზე მეტჯერ განმეორდა მიყოლებით მასივში. თუ ესეთი რიცხვი ერთზე მეტია, დაბეჭდეთ რომელიმე ერთი მათგანი.
     internal class Program
     {
-        // მომიძებეთ და დამიწერეთ ეკრანზე რიცხვი რომელიც 
-        // ყველაზე მეტჯერ განმეორდა მიყოლებით მასივში
-        // თუ ესეთი რიცხვი ერთზე მეტია, დაბეჭდეთ რომელიმე ერთი მათგანი.
-
         static void Main(string[] args)
         {
             int[] arr = { 1, 2, 2, 2, 2, 7, 0, 3, 3, 4, 4, 4, 3, 4, 5, 6 };
@@ -24,7 +21,7 @@ namespace _20251113
             Console.WriteLine();
 
             // find  number
-            
+
             for (int i = 1; i < arr.Length; i++)
             {
                 number = arr[i];
@@ -34,16 +31,3 @@ namespace _20251113
                     if (number == arr[j])
                     {
                         count++;
-                        if (count > maxCount)
-                        {
-                            maxNumber = number;
-                        }
-                    }
-                }
-            }
-
-            Console.WriteLine($"Corrent number is: {number} with count: {count}");
-
-        }
-    }
-}
