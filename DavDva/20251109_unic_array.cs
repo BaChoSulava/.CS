@@ -1,5 +1,6 @@
 namespace G18_20251109
 {
+    // TODO: 2D მასივის შექმნა და უნიკალური რიცხვებით შევსება
     internal class Program
     {
         static void Main(string[] args)
