@@ -4,44 +4,45 @@ namespace G18_20251109
     {
         static void Main(string[] args)
         {
-            int rows = 10;
-            int cols = 8;
-            int[,] x = new int[rows, cols];
+            // მასივის შექმნა
+            int a = 2;
+            int b = 2;
+            int[,] x = new int[a, b];
 
-            int totalElements = rows * cols;
-
-            // Fill the 2D array with unique random numbers
-            for (int i = 0; i < rows; i++)
+            // მასივის შევსება უნიკალური რიცხვებით
+            for (int row = 0; row < a; row++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int col = 0; col < b; col++)
                 {
-                    x[i, j] = Random.Shared.Next(0, 30); // pick range large enough
-                    bool duplicateFound = false;
-
-                    // Check for duplicates in already-filled cells
-                    for (int m = 0; m <= i; m++)
+                    bool duplicateFound;
+                    do
                     {
-                        for (int n = 0; n < (m == i ? j : cols); n++)
-                        {
-                            if (x[i, j] == x[m, n])
-                            {
-                                duplicateFound = true;
-                                break;
-                            }
-                        }
-                        if (duplicateFound) break;
-                    }
+                        x[row, col] = Random.Shared.Next(10, 15);
 
-                    // If duplicate found, retry same cell
-                    if (duplicateFound)
-                        j--;
+                        // გადამოწმება უნიკალურობაზე
+                        duplicateFound = false;
+                        for (int m = 0; m <= row; m++)
+                        {
+                            for (int n = 0; n < (m == row ? col : b); n++)
+                            {
+                                if (x[row, col] == x[m, n])
+                                {
+                                    duplicateFound = true;
+                                    break;
+                                }
+                            }
+                            if (duplicateFound) break;
+                        }
+                    }
+                    while (duplicateFound);
                 }
             }
 
-            
-            for (int i = 0; i < rows; i++)
+            // მასივის დაბეჭდვა
+            Console.WriteLine("Unique 2D array:");
+            for (int i = 0; i < a; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < b; j++)
                 {
                     Console.Write($"{x[i, j],3} ");
                 }
