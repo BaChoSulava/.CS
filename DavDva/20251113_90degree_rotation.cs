@@ -69,23 +69,20 @@ namespace _20251113
                 Console.WriteLine();
                 Console.WriteLine("Second Array (Rotated 90 degrees): ");
                 Console.WriteLine("---------------------------------");
-                //for (int i = 0; i < secondArray.GetLength(1); i++)
-                //{
-                //    for (int j = secondArray.GetLength(0) - 1; j >= 0; j--)
-                //    {
-                //        secondArray[i, j] = firstArray[j, i];
-                //        Console.Write(secondArray[i, j] + " ");
-                //    }
-                //    Console.WriteLine();
-                //}
-
-                for (int i = 0; i < xLength; i++) // i არის firstArray-ს რიგი (row)
+                for (int i = 0; i < xLength; i++)
                 {
-                    for (int j = 0; j < yLength; j++) // j არის firstArray-ს სვეტი (col)
+                    for (int j = 0; j < yLength; j++)
                     {
-                        // firstArray-ს [i, j] ელემენტი გადადის secondArray-ს [j, xLength - 1 - i] პოზიციაზე
                         secondArray[j, xLength - 1 - i] = firstArray[i, j];
-                        Console.Write(secondArray[j, xLength - 1 - i] + " ");
+                    }
+                }
+
+                // დაბეჭდვა
+                for (int i = 0; i < secondArray.GetLength(0); i++)
+                {
+                    for (int j = 0; j < secondArray.GetLength(1); j++)
+                    {
+                        Console.Write(secondArray[i, j] + " ");
                     }
                     Console.WriteLine();
                 }
