@@ -26,13 +26,23 @@ namespace _20251109
             int[,] secondArray = new int[b, a];
             for (int i = 0; i < secondArray.GetLength(1); i++)
             {
-                for (int j = secondArray.GetLength(0) - 1; j >= 0; j--)
+                for (int j = 0; j < secondArray.GetLength(0); j++)
                 {
-                    secondArray[i, j] = firstArray[j, i];
+                    secondArray[j, a - 1 - i] = firstArray[i, j];
+                }
+            }
+
+            // დაბეჭდვა
+            for (int i = 0; i < secondArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < secondArray.GetLength(1); j++)
+                {
                     Console.Write(secondArray[i, j] + " ");
                 }
                 Console.WriteLine();
             }
+
+            
         }
     }
 }
