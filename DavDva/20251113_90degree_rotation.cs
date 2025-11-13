@@ -1,0 +1,107 @@
+namespace _20251113
+{
+    // TODO: მომიძებეთ და დამიწერეთ ეკრანზე რიცხვი რომელიც ყველაზე მეტჯერ განმეორდა მიყოლებით მასივში. 
+    // თუ ესეთი რიცხვი ერთზე მეტია, დაბეჭდეთ რომელიმე ერთი მათგანი.
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string startProgram = "y";
+            while (startProgram == "y")
+            {
+                // შემოგვაქვს განზომილებები.
+                int xLength, yLength;
+                int randomMin, randomMax;
+
+                do
+                {
+                    Console.Write("array-X length: ");
+                    xLength = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("array-Y length: ");
+                    yLength = Convert.ToInt32(Console.ReadLine());
+
+                    if (xLength <= 0 || yLength <= 0)
+                    {
+                        Console.WriteLine("Invalid length range. Please try again.");
+                    }
+                } while (xLength <= 0 || yLength <= 0);
+
+
+                do
+                {
+                    Console.Write("random MIN value: ");
+                    randomMin = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("random MAX value: ");
+                    randomMax = Convert.ToInt32(Console.ReadLine());
+
+                    if (randomMin >= randomMax)
+                    {
+                        Console.WriteLine("Invalid random range. Please try again.");
+                    }
+                    else if (randomMax - randomMin < xLength * yLength)
+                    {
+                        Console.WriteLine("The range is too small to fill the array with unique values. Please try again.");
+                    }
+
+                } while (randomMin >= randomMax || randomMax - randomMin < xLength * yLength);
+
+
+
+                // ვქმნით პირველ სიმრავლეს და ვავსებთ random ელემენტებით
+                int[,] firstArray = new int[xLength, yLength];
+                Console.WriteLine();
+                Console.WriteLine("First Array: ");
+                Console.WriteLine("---------------------------------");
+                for (int i = 0; i < firstArray.GetLength(0); i++)
+                {
+                    for (int j = 0; j < firstArray.GetLength(1); j++)
+                    {
+                        firstArray[i, j] = Random.Shared.Next(randomMin, randomMax);
+                        Console.Write(firstArray[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine();
+
+                // ვქმნით მეორე სიმრავლეს და 90-გრადუსით ვავსებთ მას 
+                int[,] secondArray = new int[yLength, xLength];
+                Console.WriteLine();
+                Console.WriteLine("Second Array (Rotated 90 degrees): ");
+                Console.WriteLine("---------------------------------");
+                //for (int i = 0; i < secondArray.GetLength(1); i++)
+                //{
+                //    for (int j = secondArray.GetLength(0) - 1; j >= 0; j--)
+                //    {
+                //        secondArray[i, j] = firstArray[j, i];
+                //        Console.Write(secondArray[i, j] + " ");
+                //    }
+                //    Console.WriteLine();
+                //}
+
+                for (int i = 0; i < xLength; i++) // i არის firstArray-ს რიგი (row)
+                {
+                    for (int j = 0; j < yLength; j++) // j არის firstArray-ს სვეტი (col)
+                    {
+                        // firstArray-ს [i, j] ელემენტი გადადის secondArray-ს [j, xLength - 1 - i] პოზიციაზე
+                        secondArray[j, xLength - 1 - i] = firstArray[i, j];
+                        Console.Write(secondArray[j, xLength - 1 - i] + " ");
+                    }
+                    Console.WriteLine();
+                }
+
+
+                // პროგრამის ხელახლა დაწყება
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.Write("To restart type 'y': ");
+                startProgram = Console.ReadLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
+    }
+}
