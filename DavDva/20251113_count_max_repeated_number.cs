@@ -9,7 +9,17 @@ namespace _20251113
             string startProgram = "y";
             while (startProgram == "y")
             {
-                int[] arr = { 1, 2, 2, 2, 2, 7, 0, 3, 3, 4, 4, 4, 3, 4, 5, 6 };     //?? როგორ შევქმნა მასივი ReadLine-ით?
+                Console.Write("Array element nimber: ");
+                int elementAmount = Convert.ToInt32(Console.Readline());
+                int [] arr = int [elementAmount];
+                int elementCounter = arr.Length-1;
+                while (elementCounter >= 0)
+                {
+                    Console.Write("add element: ")
+                    arr[elementCounter] = Convert.ToInt32(Console.Readline());
+                    elementCounter--;
+                }
+                // int[] arr = { 1, 2, 2, 2, 2, 7, 0, 3, 3, 4, 4, 4, 3, 4, 5, 6 };     //?? როგორ შევქმნა მასივი ReadLine-ით?
                 int arrLength = arr.Length;
 
                 // ცარიელი მასივის შემოწმება
