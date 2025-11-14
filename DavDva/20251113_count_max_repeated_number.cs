@@ -91,7 +91,7 @@ namespace _20251113
                 startProgram = Console.ReadLine();
                 Console.WriteLine();
                 Console.WriteLine();
-                Console.WriteLine("---------------------------------");
+                Console.WriteLine("--------------------");
                 Console.WriteLine();
                 Console.WriteLine();
             }
