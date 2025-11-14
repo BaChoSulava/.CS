@@ -16,6 +16,7 @@ namespace _20251113
                 int elementCounter = 0;
                 while (elementCounter < arrLength)
                 {
+                    Console.Write("Current Array elements are: ");
                     for (int i = 0; i < arrLength; i++)
                     {
                         Console.Write(arr[i] + " ");
@@ -26,12 +27,14 @@ namespace _20251113
                     elementCounter++;
                 }
                 // int[] arr = { 1, 2, 2, 2, 2, 7, 0, 3, 3, 4, 4, 4, 3, 4, 5, 6 };    
-                
 
+                Console.WriteLine();
+                Console.WriteLine("--------------------");
+                Console.WriteLine();
                 // ცარიელი მასივის შემოწმება
                 if (arrLength == 0)
                 {
-                    Console.WriteLine();
+                    
                     Console.WriteLine("Empty array");
 
                 }
@@ -64,9 +67,7 @@ namespace _20251113
                         }
                     }
 
-                    Console.WriteLine();
-                    Console.WriteLine("--------------------");
-                    Console.WriteLine();
+
                     // სიმრავლის დაბეჭდვა
                     string plural = maxCount > 1 ? "s are" : " is";
                     Console.Write($"Array element{plural}: ");
