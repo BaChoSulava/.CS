@@ -9,7 +9,7 @@ namespace _20251113
             string startProgram = "y";
             while (startProgram == "y")
             {
-                Console.Write("Array element number: ");
+                Console.Write("Add Array element number: ");
                 int elementAmount = Convert.ToInt32(Console.ReadLine());
                 int[] arr = new int[elementAmount];
                 int elementCounter = 0;
