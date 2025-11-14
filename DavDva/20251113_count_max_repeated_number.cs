@@ -9,15 +9,20 @@ namespace _20251113
             string startProgram = "y";
             while (startProgram == "y")
             {
-                Console.Write("Array element nimber: ");
-                int elementAmount = Convert.ToInt32(Console.Readline());
-                int [] arr = int [elementAmount];
-                int elementCounter = arr.Length-1;
-                while (elementCounter >= 0)
+                Console.Write("Array element number: ");
+                int elementAmount = Convert.ToInt32(Console.ReadLine());
+                int[] arr = new int[elementAmount];
+                int elementCounter = 0;
+                while (elementCounter < arr.Length)
                 {
-                    Console.Write("add element: ")
-                    arr[elementCounter] = Convert.ToInt32(Console.Readline());
-                    elementCounter--;
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        Console.Write(arr[i] + " ");
+                    }
+                    Console.WriteLine();
+                    Console.Write("add element: ");
+                    arr[elementCounter] = Convert.ToInt32(Console.ReadLine());
+                    elementCounter++;
                 }
                 // int[] arr = { 1, 2, 2, 2, 2, 7, 0, 3, 3, 4, 4, 4, 3, 4, 5, 6 };     //?? როგორ შევქმნა მასივი ReadLine-ით?
                 int arrLength = arr.Length;
@@ -57,9 +62,12 @@ namespace _20251113
                         }
                     }
 
+                    Console.WriteLine();
+                    Console.WriteLine("--------------------");
+                    Console.WriteLine();
                     // სიმრავლის დაბეჭდვა
                     string plural = maxCount > 1 ? "s are" : " is";
-                    Console.Write ($"Array element{plural}: ");
+                    Console.Write($"Array element{plural}: ");
                     for (int i = 0; i < arrLength; i++)
                     {
                         Console.Write($"{arr[i]} ");
