@@ -12,10 +12,11 @@ namespace _20251113
                 Console.Write("Add Array element number: ");
                 int elementAmount = Convert.ToInt32(Console.ReadLine());
                 int[] arr = new int[elementAmount];
+                int arrLength = arr.Length;
                 int elementCounter = 0;
-                while (elementCounter < arr.Length)
+                while (elementCounter < arrLength)
                 {
-                    for (int i = 0; i < arr.Length; i++)
+                    for (int i = 0; i < arrLength; i++)
                     {
                         Console.Write(arr[i] + " ");
                     }
@@ -24,12 +25,13 @@ namespace _20251113
                     arr[elementCounter] = Convert.ToInt32(Console.ReadLine());
                     elementCounter++;
                 }
-                // int[] arr = { 1, 2, 2, 2, 2, 7, 0, 3, 3, 4, 4, 4, 3, 4, 5, 6 };     //?? როგორ შევქმნა მასივი ReadLine-ით?
-                int arrLength = arr.Length;
+                // int[] arr = { 1, 2, 2, 2, 2, 7, 0, 3, 3, 4, 4, 4, 3, 4, 5, 6 };    
+                
 
                 // ცარიელი მასივის შემოწმება
                 if (arrLength == 0)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Empty array");
 
                 }
