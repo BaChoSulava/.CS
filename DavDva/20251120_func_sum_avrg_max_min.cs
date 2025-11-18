@@ -4,31 +4,50 @@ namespace _20251120
     {
         static void Main()
         {
-            int dimension = AskDimension();
-            int length = AskLength();
-            (int min, int max) = AskRange();
-
-            if (dimension == 1)
+            string startProgram = "y";
+            while (startProgram == "y")
             {
-                int[] arr = Create1DArray(length, min, max);
+                int dimension = AskDimension();
+                int length = AskLength();
+                (int min, int max) = AskRange();
 
-                int sum = GetSum(arr);
-                float avg = GetAverage(arr);
-                int maxV = GetMax(arr);
-                int minV = GetMin(arr);
+                Console.WriteLine("----------------");
+                Console.WriteLine();
 
-                Print1D(arr, sum, avg, maxV, minV);
-            }
-            else
-            {
-                int[,] arr2D = Create2DArray(length, min, max);
+                if (dimension == 1)
+                {
+                    int[] arr = Create1DArray(length, min, max);
 
-                int sum = GetSum2D(arr2D);
-                float avg = GetAverage2D(arr2D);
-                int maxV = GetMax2D(arr2D);
-                int minV = GetMin2D(arr2D);
+                    int sum = GetSum(arr);
+                    float avg = GetAverage(arr);
+                    int maxV = GetMax(arr);
+                    int minV = GetMin(arr);
 
-                Print2D(arr2D, sum, avg, maxV, minV);
+                    Print1D(arr, sum, avg, maxV, minV);
+                }
+                else
+                {
+                    int[,] arr2D = Create2DArray(length, min, max);
+
+                    int sum = GetSum2D(arr2D);
+                    float avg = GetAverage2D(arr2D);
+                    int maxV = GetMax2D(arr2D);
+                    int minV = GetMin2D(arr2D);
+
+                    Print2D(arr2D, sum, avg, maxV, minV);
+                }
+
+                // RESTART APP
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.Write("To restart type 'y': ");
+                startProgram = Console.ReadLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("--------------------");
+                Console.WriteLine();
+                Console.WriteLine();
+
             }
         }
 
@@ -38,41 +57,41 @@ namespace _20251120
 
         static int AskDimension()
         {
-            int d;
+            int dimension;
             do
             {
                 Console.Write("Dimensions (1 or 2): ");
-            } while (!int.TryParse(Console.ReadLine(), out d) || (d != 1 && d != 2));
+            } while (!int.TryParse(Console.ReadLine(), out dimension) || (dimension != 1 && dimension != 2));
 
-            return d;
+            return dimension;
         }
 
         static int AskLength()
         {
-            int l;
+            int lengt;
             do
             {
                 Console.Write("Array length: ");
-            } while (!int.TryParse(Console.ReadLine(), out l) || l <= 0);
+            } while (!int.TryParse(Console.ReadLine(), out lengt) || lengt <= 0);
 
-            return l;
+            return lengt;
         }
 
         static (int, int) AskRange()
         {
-            int min, max;
+            int minRange, maxRange;
 
             do
             {
                 Console.Write("Min value: ");
-            } while (!int.TryParse(Console.ReadLine(), out min));
+            } while (!int.TryParse(Console.ReadLine(), out minRange));
 
             do
             {
                 Console.Write("Max value: ");
-            } while (!int.TryParse(Console.ReadLine(), out max) || max <= min);
+            } while (!int.TryParse(Console.ReadLine(), out maxRange) || maxRange <= minRange);
 
-            return (min, max);
+            return (minRange, maxRange);
         }
 
         // -------------------------------------------------------
@@ -91,9 +110,9 @@ namespace _20251120
         static int[,] Create2DArray(int length, int min, int max)
         {
             int[,] arr = new int[length, length];
-            for (int r = 0; r < length; r++)
-                for (int c = 0; c < length; c++)
-                    arr[r, c] = Random.Shared.Next(min, max + 1);
+            for (int row = 0; row < length; row++)
+                for (int col = 0; col < length; col++)
+                    arr[row, col] = Random.Shared.Next(min, max + 1);
 
             return arr;
         }
@@ -105,7 +124,7 @@ namespace _20251120
         static int GetSum(int[] arr)
         {
             int sum = 0;
-            foreach (int x in arr) sum += x;
+            foreach (int element in arr) sum += element;
             return sum;
         }
 
@@ -114,14 +133,14 @@ namespace _20251120
         static int GetMax(int[] arr)
         {
             int max = arr[0];
-            foreach (int x in arr) if (x > max) max = x;
+            foreach (int element in arr) if (element > max) max = element;
             return max;
         }
 
         static int GetMin(int[] arr)
         {
             int min = arr[0];
-            foreach (int x in arr) if (x < min) min = x;
+            foreach (int element in arr) if (element < min) min = element;
             return min;
         }
 
@@ -132,7 +151,7 @@ namespace _20251120
         static int GetSum2D(int[,] arr)
         {
             int sum = 0;
-            foreach (int x in arr) sum += x;
+            foreach (int element in arr) sum += element;
             return sum;
         }
 
@@ -145,14 +164,14 @@ namespace _20251120
         static int GetMax2D(int[,] arr)
         {
             int max = arr[0, 0];
-            foreach (int x in arr) if (x > max) max = x;
+            foreach (int element in arr) if (element > max) max = element;
             return max;
         }
 
         static int GetMin2D(int[,] arr)
         {
             int min = arr[0, 0];
-            foreach (int x in arr) if (x < min) min = x;
+            foreach (int element in arr) if (element < min) min = element;
             return min;
         }
 
@@ -163,19 +182,22 @@ namespace _20251120
         static void Print1D(int[] arr, int sum, float avg, int max, int min)
         {
             Console.WriteLine("1D Array:");
-            foreach (int x in arr) Console.Write(x + " ");
+            foreach (int element in arr) Console.Write(element + " ");
+            Console.WriteLine();
             Console.WriteLine($"\nSum={sum} Avg={avg} Max={max} Min={min}");
         }
 
         static void Print2D(int[,] arr, int sum, float avg, int max, int min)
         {
             Console.WriteLine("2D Array:");
-            for (int r = 0; r < arr.GetLength(0); r++)
+            Console.WriteLine();
+            for (int row = 0; row < arr.GetLength(0); row++)
             {
-                for (int c = 0; c < arr.GetLength(1); c++)
-                    Console.Write(arr[r, c] + " ");
+                for (int col = 0; col < arr.GetLength(1); col++)
+                    Console.Write(arr[row, col] + " ");
                 Console.WriteLine();
             }
+            Console.WriteLine();
             Console.WriteLine($"\nSum={sum} Avg={avg} Max={max} Min={min}");
         }
     }
