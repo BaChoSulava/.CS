@@ -47,7 +47,6 @@ namespace _20251120
                 Console.WriteLine("--------------------");
                 Console.WriteLine();
                 Console.WriteLine();
-
             }
         }
 
@@ -128,7 +127,10 @@ namespace _20251120
             return sum;
         }
 
-        static float GetAverage(int[] arr) => (float)GetSum(arr) / arr.Length;
+        static float GetAverage(int[] arr)
+        {
+            return (float)GetSum(arr) / arr.Length;
+        }
 
         static int GetMax(int[] arr)
         {
