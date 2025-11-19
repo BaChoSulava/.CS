@@ -5,55 +5,46 @@ namespace _20251120
         static void Main()
         {
             string startProgram = "y";
+
             while (startProgram == "y")
             {
                 int dimension = AskDimension();
                 int length = AskLength();
-                (int min, int max) = AskRange();
+                (int minRange, int maxRange) = AskRange();
 
-                Console.WriteLine("----------------");
-                Console.WriteLine();
+                Console.WriteLine("----------------\n");
 
                 if (dimension == 1)
                 {
-                    int[] arr = Create1DArray(length, min, max);
+                    int[] arr = Create1DArray(length, minRange, maxRange);
 
                     int sum = GetSum(arr);
                     float avg = GetAverage(arr);
-                    int maxV = GetMax(arr);
-                    int minV = GetMin(arr);
+                    int max = GetMax(arr);
+                    int min = GetMin(arr);
 
-                    Print1D(arr, sum, avg, maxV, minV);
+                    Print1D(arr, sum, avg, max, min);
                 }
                 else
                 {
-                    int[,] arr2D = Create2DArray(length, min, max);
+                    int[,] arr2D = Create2DArray(length, minRange, maxRange);
 
                     int sum = GetSum2D(arr2D);
                     float avg = GetAverage2D(arr2D);
-                    int maxV = GetMax2D(arr2D);
-                    int minV = GetMin2D(arr2D);
+                    int max = GetMax2D(arr2D);
+                    int min = GetMin2D(arr2D);
 
-                    Print2D(arr2D, sum, avg, maxV, minV);
+                    Print2D(arr2D, sum, avg, max, min);
                 }
 
-                // RESTART APP
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.Write("To restart type 'y': ");
-                startProgram = Console.ReadLine();
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine("--------------------");
-                Console.WriteLine();
-                Console.WriteLine();
+                Console.WriteLine("\n\nTo restart type 'y': ");
+                startProgram = Console.ReadLine().ToLower();
+
+                Console.WriteLine("\n--------------------\n");
             }
         }
 
-        // -------------------------------------------------------
         // INPUT METHODS
-        // -------------------------------------------------------
-
         static int AskDimension()
         {
             int dimension;
@@ -67,13 +58,13 @@ namespace _20251120
 
         static int AskLength()
         {
-            int lengt;
+            int length;
             do
             {
                 Console.Write("Array length: ");
-            } while (!int.TryParse(Console.ReadLine(), out lengt) || lengt <= 0);
+            } while (!int.TryParse(Console.ReadLine(), out length) || length <= 0);
 
-            return lengt;
+            return length;
         }
 
         static (int, int) AskRange()
@@ -93,33 +84,27 @@ namespace _20251120
             return (minRange, maxRange);
         }
 
-        // -------------------------------------------------------
         // ARRAY CREATION
-        // -------------------------------------------------------
-
-        static int[] Create1DArray(int length, int min, int max)
+        static int[] Create1DArray(int length, int minRange, int maxRange)
         {
             int[] arr = new int[length];
             for (int i = 0; i < length; i++)
-                arr[i] = Random.Shared.Next(min, max + 1);
+                arr[i] = Random.Shared.Next(minRange, maxRange + 1);
 
             return arr;
         }
 
-        static int[,] Create2DArray(int length, int min, int max)
+        static int[,] Create2DArray(int length, int minRange, int maxRange)
         {
             int[,] arr = new int[length, length];
             for (int row = 0; row < length; row++)
                 for (int col = 0; col < length; col++)
-                    arr[row, col] = Random.Shared.Next(min, max + 1);
+                    arr[row, col] = Random.Shared.Next(minRange, maxRange + 1);
 
             return arr;
         }
 
-        // -------------------------------------------------------
         // 1D MATH
-        // -------------------------------------------------------
-
         static int GetSum(int[] arr)
         {
             int sum = 0;
@@ -146,10 +131,7 @@ namespace _20251120
             return min;
         }
 
-        // -------------------------------------------------------
         // 2D MATH
-        // -------------------------------------------------------
-
         static int GetSum2D(int[,] arr)
         {
             int sum = 0;
@@ -177,29 +159,24 @@ namespace _20251120
             return min;
         }
 
-        // -------------------------------------------------------
-        // PRINT
-        // -------------------------------------------------------
-
+        // PRINT METHODS
         static void Print1D(int[] arr, int sum, float avg, int max, int min)
         {
             Console.WriteLine("1D Array:");
             foreach (int element in arr) Console.Write(element + " ");
-            Console.WriteLine();
-            Console.WriteLine($"\nSum={sum} Avg={avg} Max={max} Min={min}");
+            Console.WriteLine($"\n\nSum={sum} Avg={avg} Max={max} Min={min}");
         }
 
         static void Print2D(int[,] arr, int sum, float avg, int max, int min)
         {
-            Console.WriteLine("2D Array:");
-            Console.WriteLine();
+            Console.WriteLine("2D Array:\n");
             for (int row = 0; row < arr.GetLength(0); row++)
             {
                 for (int col = 0; col < arr.GetLength(1); col++)
                     Console.Write(arr[row, col] + " ");
                 Console.WriteLine();
             }
-            Console.WriteLine();
+
             Console.WriteLine($"\nSum={sum} Avg={avg} Max={max} Min={min}");
         }
     }
