@@ -13,25 +13,46 @@ namespace FunctionsReturn
     {
         static void Main()
         {
-            Console.Write("Enter upper bound number: ");
-            int upperBound = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine($"Numbers up to {upperBound} are:");
-
-            int[] numbers = GetNumbers(upperBound);
-            for (int i = 0; i < numbers.Length; i++)
+            string startProgram = "y";
+            while (startProgram == "y")
             {
-                Console.WriteLine(numbers[i]);
+                Console.Write("Enter upper bound number: ");
+                int upperBound = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine($"Numbers up to {upperBound} are:");
+
+                int[] numbers = GetNumbers(upperBound);
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    Console.WriteLine(numbers[i]);
+                }
+
+
+
+                Console.Write("\n\nTo restart type 'y': ");
+                startProgram = Console.ReadLine().ToLower();
+
+                Console.WriteLine("\n--------------------\n");
             }
+            
         }
 
         static int[] GetNumbers(int upperBound)
         {
             // Count how many Fibonacci numbers are below upperBound
+            int count = CountElements(upperBound);
+
+            // Create array to hold Fibonacci numbers
+            return CreateArray(count);
+
+        }
+
+        static int CountElements(int upperBound)
+        {
             int a = 0, b = 1;
             int count = 1;
             int lastFibo;
-            for (int i=0; i<upperBound; i++)
+            for (int i = 0; i < upperBound; i++)
             {
                 if (b < upperBound)
                 {
@@ -42,13 +63,17 @@ namespace FunctionsReturn
                 }
             }
 
-            // Create array to hold Fibonacci numbers
+            return count;
+        }
+
+        static int[] CreateArray(int count)
+        {
             int[] arr = new int[count];
             arr[0] = 0;
             arr[1] = 1;
-            for (int i =2; i< count; i++)
+            for (int i = 2; i < count; i++)
             {
-                arr[i] = arr[i-2] + arr[i-1];
+                arr[i] = arr[i - 2] + arr[i - 1];
             }
 
             return arr;
