@@ -28,23 +28,21 @@ namespace FunctionsReturn
                 }
 
 
-
+                // RESTART
                 Console.Write("\n\nTo restart type 'y': ");
                 startProgram = Console.ReadLine().ToLower();
 
                 Console.WriteLine("\n--------------------\n");
             }
-            
         }
 
         static int[] GetNumbers(int upperBound)
         {
-            // Count how many Fibonacci numbers are below upperBound
+            // Count how many Fibonacci numbers are in upperBound
             int count = CountElements(upperBound);
 
-            // Create array to hold Fibonacci numbers
+            // Create an array filled with Fibonacci numbers
             return CreateArray(count);
-
         }
 
         static int CountElements(int upperBound)
@@ -78,6 +76,5 @@ namespace FunctionsReturn
 
             return arr;
         }
-
     }
 }
