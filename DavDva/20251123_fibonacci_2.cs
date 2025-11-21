@@ -33,8 +33,7 @@ namespace FunctionsReturn
                 startProgram = Console.ReadLine().ToLower();
 
                 Console.WriteLine("\n--------------------\n");
-            }
-            
+            }       
         }
 
         static int[] GetNumbers(int upperBound)
