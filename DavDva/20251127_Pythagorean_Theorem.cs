@@ -99,6 +99,7 @@ namespace _20251127
         static double Input(string name)
         {
             double number;
+            Console.WriteLine();
 
             while (true)
             {
