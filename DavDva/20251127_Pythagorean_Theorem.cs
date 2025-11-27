@@ -27,9 +27,14 @@ namespace _20251127
 
             do
             {
-                Console.WriteLine("I can calculate the length of a leg, the hypotenuse, or check if a triangle is right.");
-                Console.Write("Type 'l' for leg, 'h' for hypotenuse or 'c' for checking: ");
-                method = Console.ReadLine().ToLower();
+                Console.WriteLine("\nI can calculate the length of a leg, the hypotenuse, or check if a triangle may exist.");
+                Console.Write("\nType 'l' for leg, 'h' for hypotenuse or 'c' for checking: ");
+                method = Console.ReadLine();
+
+                if (method != "l" && method != "h" && method != "c")
+                {
+                    Console.WriteLine("Invalid choice! Please type 'l', 'h', or 'c'.\n");
+                }
             }
             while (method != "l" && method != "h" && method != "c");
 
