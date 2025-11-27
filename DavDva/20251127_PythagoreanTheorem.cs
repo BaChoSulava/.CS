@@ -123,7 +123,7 @@ static double Input(string errorCode) {
 				Console.Write("Enter hypotenuse (c) value: ");
 			}
 		}
-	} while(erroCode == InputA || erroCode == InputB || erroCode == InputC);
+	} while(erroCode != InputA || erroCode != InputB || erroCode != InputC);
 }
 }
 }
