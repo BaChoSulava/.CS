@@ -1,8 +1,8 @@
 using System;
 
-namespace _20251130
+namespace _20251127
 {
-    // TODO: Quadratic Equation Solver
+    // Quadratic Equation Solver
     class QuadraticEquation
     {
         static void Main()
@@ -123,11 +123,11 @@ namespace _20251130
 
         static void PrintAnswer(string[] answers)
         {
-            if (answers[1] == "empty")
+            if (answers[1] == "empty")                  //  D < 0
             {
                 Console.WriteLine($"\n{answers[0]}");
             }
-            else if (answers[0] == "empty")
+            else if (answers[0] == "empty")             // D = 0
             {
                 Console.WriteLine($"\nThe equation has ONE answer and it's: x = {answers[1]}\n");
             }
