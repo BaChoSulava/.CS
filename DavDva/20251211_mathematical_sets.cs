@@ -1,4 +1,4 @@
-namespace G18_2025_12_07
+namespace G18_2025_12_11
 {
     internal class Program
     {
@@ -13,7 +13,7 @@ namespace G18_2025_12_07
             //int[] z = x.Intersect(y).ToArray();
             //int[] z = x.Distinct().ToArray();
 
-            int[] z = Concat(x, y);
+            int[] z = Union(x, y);
 
             for (int i = 0; i < z.Length; i++)
             {
@@ -23,13 +23,32 @@ namespace G18_2025_12_07
 
         static int[] Union(int[] a, int[] b)
         {
-            int[] c = Concat(a, b);
-            for
+            int count = 0;
+            bool present = false;
+            int[] unionArray = new int {a.Length};
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < b.Length; j++)
+                {
+                    if (a[i] == b[j])
+                    {
+                        present = true;
+                    }
+                }
+                if (!present)
+                {
+                    unionArray[count] = a[i];
+                    count++;
+                }
+            }
+            return Resize(ref unionArray, count);
+            
         }
 
         //static int[] Except(int[] a, int[] b)
         //{
 
+        //    int exceptArray = 
         //}
 
         //static int[] Intersect(int[] a, int[] b)
@@ -39,24 +58,39 @@ namespace G18_2025_12_07
 
         static int[] Concat(int[] a, int[] b)
         {
-            int[] concat = new int[a.Length + b.Length];
+            int[] concatArray = new int[a.Length + b.Length];
 
             for (int i = 0; i < a.Length; i++)
             {
-                concat[i] = a[i];
+                concatArray[i] = a[i];
             }
 
             for (int j = 0; j < b.Length; j++)
             {
-                concat[a.Length + j] = b[j];
+                concatArray[a.Length + j] = b[j];
             }
 
-            return concat;
+            return concatArray;
         }
 
         //static int[] Distinct(int[] a)
         //{
 
         //}
+
+
+        static void Resize(ref int[] array, int newSize)
+        {
+            string[] resizedArray = new string[newSize];
+
+            int lengthToCopy = Math.Min(array.Length, newSize);
+
+            for (int index = 0; index < lengthToCopy; index++)
+            {
+                resizedArray[index] = array[index];
+            }
+
+            array = resizedArray;
+        }
     }
 }
