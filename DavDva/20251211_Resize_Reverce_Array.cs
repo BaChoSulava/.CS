@@ -48,15 +48,31 @@ namespace G18_2025_12_11
         // void method
         static void Reverse(string[] array)
         {
-            int left = 0;
-            int right = array.Length - 1;
-
-            while (left < right)
+            string[] newArray = new string[array.Length];
+        
+            for (int i = 0; i < array.Length; i++)
             {
-                (array[left], array[right]) = (array[right], array[left]);
-                left++;
-                right--;
+                newArray[i] = array[array.Length - 1 - i];
             }
+        
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = newArray[i];
+            }
+        }
+
+        // real-world method is
+        // static void Reverse(string[] array)
+        // {
+           //  int left = 0;
+            // int right = array.Length - 1;
+
+            // while (left < right)
+            // {
+               //  (array[left], array[right]) = (array[right], array[left]);
+                // left++;
+                // right--;
+            // }
         }
     }
 }
