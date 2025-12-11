@@ -46,7 +46,7 @@ namespace G18_2025_12_11
 
 
         // void method
-        static void ReverseInPlace(string[] array)
+        static void Reverse(string[] array)
         {
             int left = 0;
             int right = array.Length - 1;
