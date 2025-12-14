@@ -7,13 +7,14 @@ namespace G18_2025_12_11
             int[] x = { 1, 2, 9, 3, 4, 5, 3 };
             int[] y = { 5, 6, 7, 2, 7, 1 };
 
-            //int[] z = x.Concat(y).ToArray();
-            //int[] z = x.Union(y).ToArray();
-            //int[] z = x.Except(y).ToArray();
-            //int[] z = x.Intersect(y).ToArray();
-            //int[] z = x.Distinct().ToArray();
+            //int[] z = x.Concat(y).ToArray();      //done      //ყველა ელემენტების გაერთიანება
+            //int[] z = x.Distinct().ToArray();      //done      //უნიკალური ელემენტები x-დან
+            //int[] z = x.Union(y).ToArray();      //done       //უნიკალური ელემენტები ორივედან
+            //int[] z = x.Except(y).ToArray();      //      //უნიკალური ელემენტები x-დან y-ის მიმართ
+            //int[] z = x.Intersect(y).ToArray();      //      //საერთო ელემენტები
 
-            int[] z = Distinct(x);
+
+            int[] z = Intersect(x, y);
 
             for (int i = 0; i < z.Length; i++)
             {
@@ -39,33 +40,37 @@ namespace G18_2025_12_11
             return concatArray;
         }
 
-        static int[] Union(int[] a, int[] b)
+        static int[] Distinct(int[] a)
         {
-            int[] temp = new int[a.Length + b.Length];
+            int[] temp = new int[a.Length];
             int count = 0;
 
-            foreach (int x in a)
+            for (int i = 0; i < a.Length; i++)
             {
                 bool exists = false;
-                for (int i = 0; i < count; i++)
-                    if (temp[i] == x) exists = true;
+
+                for (int j = 0; j < count; j++)
+                {
+                    if (temp[j] == a[i])
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
 
                 if (!exists)
-                    temp[count++] = x;
-            }
-
-            foreach (int x in b)
-            {
-                bool exists = false;
-                for (int i = 0; i < count; i++)
-                    if (temp[i] == x) exists = true;
-
-                if (!exists)
-                    temp[count++] = x;
+                {
+                    temp[count++] = a[i];
+                }
             }
 
             Resize(ref temp, count);
             return temp;
+        }
+
+        static int[] Union(int[] a, int[] b)
+        {
+            return Distinct(Concat(a, b));
         }
 
 
@@ -103,51 +108,75 @@ namespace G18_2025_12_11
         }
 
 
-        //static int[] Intersect(int[] a, int[] b)
-        //{
-
-        //}
-
-
-
-        static int[] Distinct(int[] a)
+        static int[] Intersect(int[] a, int[] b)
         {
-            int[] temp = new int[a.Length];
+            //int[] temp = new int[Math.Min(a.Length, b.Length)];
+            //int count = 0;
+
+            //foreach (int x in a)
+            //{
+            //    bool foundInB = false;
+
+            //    // Check if x exists in b
+            //    foreach (int y in b)
+            //    {
+            //        if (x == y)
+            //        {
+            //            foundInB = true;
+            //            break;
+            //        }
+            //    }
+
+            //    if (foundInB)
+            //    {
+            //        // Prevent duplicates
+            //        bool exists = false;
+            //        for (int i = 0; i < count; i++)
+            //        {
+            //            if (temp[i] == x)
+            //            {
+            //                exists = true;
+            //                break;
+            //            }
+            //        }
+
+            //        if (!exists)
+            //        {
+            //            temp[count++] = x;
+            //        }
+            //    }
+            //}
+
+            //Resize(ref temp, count);
+            //return temp;
+            int[] temp = new int[a.Length + b.Length];
             int count = 0;
 
-            for (int i = 0; i < a.Length; i++)
+            for (int i=0; i<a.Length; i++)
             {
-                bool exists = false;
-
-                for (int j = 0; j < count; j++)
+                bool exist = false;
+                for (int j=0; j<b.Length)
                 {
-                    if (temp[j] == a[i])
-                    {
-                        exists = true;
-                        break;
-                    }
-                }
 
-                if (!exists)
-                {
-                    temp[count++] = a[i];
                 }
             }
-
-            Resize(ref temp, count);
-            return temp;
         }
+
+
+
+
+        
 
 
         static void Resize(ref int[] array, int newSize)
         {
-            string[] resizedArray = new string[newSize];
+            int[] resizedArray = new int[newSize];
 
             int lengthToCopy = Math.Min(array.Length, newSize);
 
-            for (int index = 0; index < lengthToCopy; index++)
+            for (int i = 0; i < lengthToCopy; i++)
             {
-                resizedArray[index] = array[index];
+                resizedArray[i] = array[i];
             }
 
             array = resizedArray;
