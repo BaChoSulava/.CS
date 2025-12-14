@@ -10,8 +10,8 @@ namespace G18_2025_12_11
             //int[] z = x.Concat(y).ToArray();      //done      //ყველა ელემენტების გაერთიანება
             //int[] z = x.Distinct().ToArray();      //done      //უნიკალური ელემენტები x-დან
             //int[] z = x.Union(y).ToArray();      //done       //უნიკალური ელემენტები ორივედან
-            //int[] z = x.Except(y).ToArray();      //      //უნიკალური ელემენტები x-დან y-ის მიმართ
-            //int[] z = x.Intersect(y).ToArray();      //      //საერთო ელემენტები
+            //int[] z = x.Except(y).ToArray();      //done      //უნიკალური ელემენტები x-დან y-ის მიმართ
+            //int[] z = x.Intersect(y).ToArray();      //done      //საერთო ელემენტები
 
 
             int[] z = Intersect(x, y);
