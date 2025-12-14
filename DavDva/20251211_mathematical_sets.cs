@@ -13,7 +13,7 @@ namespace G18_2025_12_11
             //int[] z = x.Intersect(y).ToArray();
             //int[] z = x.Distinct().ToArray();
 
-            int[] z = Union(x, y);
+            int[] z = Distinct(x);
 
             for (int i = 0; i < z.Length; i++)
             {
@@ -21,40 +21,6 @@ namespace G18_2025_12_11
             }
         }
 
-        static int[] Union(int[] a, int[] b)
-        {
-            int count = 0;
-            bool present = false;
-            int[] unionArray = new int {a.Length};
-            for (int i = 0; i < a.Length; i++)
-            {
-                for (int j = 0; j < b.Length; j++)
-                {
-                    if (a[i] == b[j])
-                    {
-                        present = true;
-                    }
-                }
-                if (!present)
-                {
-                    unionArray[count] = a[i];
-                    count++;
-                }
-            }
-            return Resize(ref unionArray, count);
-            
-        }
-
-        //static int[] Except(int[] a, int[] b)
-        //{
-
-        //    int exceptArray = 
-        //}
-
-        //static int[] Intersect(int[] a, int[] b)
-        //{
-
-        //}
 
         static int[] Concat(int[] a, int[] b)
         {
@@ -73,10 +39,104 @@ namespace G18_2025_12_11
             return concatArray;
         }
 
-        //static int[] Distinct(int[] a)
+        static int[] Union(int[] a, int[] b)
+        {
+            int[] temp = new int[a.Length + b.Length];
+            int count = 0;
+
+            foreach (int x in a)
+            {
+                bool exists = false;
+                for (int i = 0; i < count; i++)
+                    if (temp[i] == x) exists = true;
+
+                if (!exists)
+                    temp[count++] = x;
+            }
+
+            foreach (int x in b)
+            {
+                bool exists = false;
+                for (int i = 0; i < count; i++)
+                    if (temp[i] == x) exists = true;
+
+                if (!exists)
+                    temp[count++] = x;
+            }
+
+            Resize(ref temp, count);
+            return temp;
+        }
+
+
+        static int[] Except(int[] a, int[] b)
+        {
+            int[] temp = new int[a.Length];
+            int count = 0;
+
+            foreach (int x in a)
+            {
+                bool found = false;
+
+                foreach (int y in b)
+                {
+                    if (x == y)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    bool exists = false;
+                    for (int i = 0; i < count; i++)
+                        if (temp[i] == x) exists = true;
+
+                    if (!exists)
+                        temp[count++] = x;
+                }
+            }
+
+            Resize(ref temp, count);
+            return temp;
+        }
+
+
+        //static int[] Intersect(int[] a, int[] b)
         //{
 
         //}
+
+
+
+        static int[] Distinct(int[] a)
+        {
+            int[] temp = new int[a.Length];
+            int count = 0;
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                bool exists = false;
+
+                for (int j = 0; j < count; j++)
+                {
+                    if (temp[j] == a[i])
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (!exists)
+                {
+                    temp[count++] = a[i];
+                }
+            }
+
+            Resize(ref temp, count);
+            return temp;
+        }
 
 
         static void Resize(ref int[] array, int newSize)
