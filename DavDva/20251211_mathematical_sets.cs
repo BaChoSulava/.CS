@@ -110,62 +110,46 @@ namespace G18_2025_12_11
 
         static int[] Intersect(int[] a, int[] b)
         {
-            //int[] temp = new int[Math.Min(a.Length, b.Length)];
-            //int count = 0;
-
-            //foreach (int x in a)
-            //{
-            //    bool foundInB = false;
-
-            //    // Check if x exists in b
-            //    foreach (int y in b)
-            //    {
-            //        if (x == y)
-            //        {
-            //            foundInB = true;
-            //            break;
-            //        }
-            //    }
-
-            //    if (foundInB)
-            //    {
-            //        // Prevent duplicates
-            //        bool exists = false;
-            //        for (int i = 0; i < count; i++)
-            //        {
-            //            if (temp[i] == x)
-            //            {
-            //                exists = true;
-            //                break;
-            //            }
-            //        }
-
-            //        if (!exists)
-            //        {
-            //            temp[count++] = x;
-            //        }
-            //    }
-            //}
-
-            //Resize(ref temp, count);
-            //return temp;
-            int[] temp = new int[a.Length + b.Length];
+            int[] temp = new int[Math.Min(a.Length, b.Length)];
             int count = 0;
 
-            for (int i=0; i<a.Length; i++)
+            foreach (int x in a)
             {
-                bool exist = false;
-                for (int j=0; j<b.Length)
-                {
+                bool foundInB = false;
 
+                // Check if x exists in b
+                foreach (int y in b)
+                {
+                    if (x == y)
+                    {
+                        foundInB = true;
+                        break;
+                    }
+                }
+
+                if (foundInB)
+                {
+                    // Prevent duplicates
+                    bool exists = false;
+                    for (int i = 0; i < count; i++)
+                    {
+                        if (temp[i] == x)
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+
+                    if (!exists)
+                    {
+                        temp[count++] = x;
+                    }
                 }
             }
+
+            Resize(ref temp, count);
+            return temp;
         }
-
-
-
-
-        
 
 
         static void Resize(ref int[] array, int newSize)
