@@ -1,6 +1,6 @@
 using System;
 
-namespace _20251127
+namespace _20251221
 {
     internal class Program
     {
