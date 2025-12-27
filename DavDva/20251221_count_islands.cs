@@ -4,7 +4,7 @@ namespace G17_20221227
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int[,] sea = new int[Random.Shared.Next(10, 20), Random.Shared.Next(10, 20)];
 
