@@ -26,7 +26,18 @@ namespace G18UserManagement
     //davadot dacva, rom Username-ze ar sheizlebodes 8 simboloze ufro naklebi mnishvnelobis minicheba.
     class User
     {
-        public string Username { get; set; }
+        public string Username 
+        { 
+            get => _username;
+            set
+            {
+                if (value.Length < 8)
+                {
+                    throw new ArgumentException("Username cannot be shorter then 8 simbols.");
+                }
+                _username = value;
+            }
+        }
         public string Password { get; set; }
     }
 
@@ -48,30 +59,24 @@ namespace G18UserManagement
 * da daabrunos 0.
 */
 
+            // 1. username ან password არ არის მითითებული
             if (string.IsNullOrEmpty(u.Username) || string.IsNullOrEmpty(u.Password))       return -1;
-            bool foundEmptySlot = false;
+            
             for (int i = 0; i < _users.Length; i++)
             {
+                // 2. username უკვე არსებობს
                 if (_users[i] != null && _users[i].Username == u.Username)                  return -2;
+                
+                // 3. ვიპოვოთ პირველი ცარიელი ადგილი
                 if (_users[i] == null)
                 {
-                    foundEmptySlot = true;
-                    break;
-                }
-            }
-            if (!foundEmptySlot)                                                            return -3;
-
-
-            for (int i = 0; i < _users.Length; i++)
-            {
-                if (_users[i].Username == null && _users[i].Password == null)
-                {
-                    _users[i].Username = u.Username;
-                    _users[i].Password = u.Password;
+                    _users[i] = u;
+                    return 0;
                 }
             }
 
-            return 0;
+            // 4. მასივი სავსეა
+            return 3;
         }
 
         public static bool Login(string username, string password)
