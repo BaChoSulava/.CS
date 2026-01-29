@@ -26,6 +26,7 @@ namespace G18UserManagement
     //davadot dacva, rom Username-ze ar sheizlebodes 8 simboloze ufro naklebi mnishvnelobis minicheba.
     class User
     {
+        private string _username;
         public string Username 
         { 
             get => _username;
@@ -65,7 +66,8 @@ namespace G18UserManagement
             for (int i = 0; i < _users.Length; i++)
             {
                 // 2. username უკვე არსებობს
-                if (_users[i] != null && _users[i].Username == u.Username)                  return -2;
+                if (_users[i] != null &&
+                    _users[i].Username == u.Username)                  return -2;
                 
                 // 3. ვიპოვოთ პირველი ცარიელი ადგილი
                 if (_users[i] == null)
@@ -76,7 +78,7 @@ namespace G18UserManagement
             }
 
             // 4. მასივი სავსეა
-            return 3;
+            return -3;
         }
 
         public static bool Login(string username, string password)
@@ -87,7 +89,10 @@ namespace G18UserManagement
 
             for (int i = 0; i < _users.Length; i++)
             {
-                if (_users[i].Username == username && _users[i].Password == password)
+                if (_users[i] != null &&
+                    _users[i].Username == username &&
+                    _users[i].Password == password)
+
                 {
                     return true;
                 }
@@ -105,11 +110,13 @@ namespace G18UserManagement
 
             for (int i = 0; i < _users.Length; i++)
             {
-                if (_users[i].Username == username && _users[i].Password == password)
+                if (_users[i] != null &&
+                    _users[i].Username == username)
                 {
                     _users[i] = null;
                     return true;
                 }
+
             }
 
             return false;
