@@ -103,6 +103,15 @@ namespace G18UserManagement
 * tu aseti chanaweri ipova masivis elementze mianichos null (rashic vgulisxmobt washlas)
 * da daabrunos true, winaaghmdeg shemtxvevashi false.*/
 
+            for (int i = 0; i < _users.Length; i++)
+            {
+                if (_users[i].Username == username && _users[i].Password == password)
+                {
+                    _users[i] = null;
+                    return true;
+                }
+            }
+
             return false;
         }
     }
