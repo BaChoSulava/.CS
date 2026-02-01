@@ -1,12 +1,9 @@
-using System;
-
-namespace G18UserManagement
+namespace UserManagement
 {
     class Program
     {
         static void Main()
         {
-            
             Console.WriteLine(UserManager.Login("nika1998", "123")); //false
             User user1 = new User();
             user1.Username = "nika1998";
@@ -23,103 +20,122 @@ namespace G18UserManagement
         }
     }
 
-    //davadot dacva, rom Username-ze ar sheizlebodes 8 simboloze ufro naklebi mnishvnelobis minicheba.
     class User
     {
-        private string _username;
-        public string Username 
-        { 
-            get => _username;
-            set
-            {
-                if (value.Length < 8)
-                {
-                    throw new ArgumentException("Username cannot be shorter then 8 simbols.");
-                }
-                _username = value;
-            }
+        public User(string username, string password) 
+        {
+            ValidateUsername(username);
+            ValidatePassword(password);
+            Username = username;
+            Password = password;
         }
-        public string Password { get; set; }
+
+        public string Username { get; }
+        public string Password { get; private set; }
+
+        public void ChangePassword(string currentPassword, string newPassword)
+        {
+            if (currentPassword == newPassword)
+                throw new ArgumentException("New password cannot be the same as the current password.");
+            if (Password != currentPassword)
+                throw new ArgumentException("Current password is incorrect.");
+
+            ValidatePassword(newPassword);
+            Password = newPassword;
+        }
+
+        private static void ValidateUsername(string username)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException("Username cannot be null or empty.");
+            if (username.Length < 8)
+                throw new ArgumentException("Username must be at least 8 characters long.");
+        }
+
+        private static void ValidatePassword(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password cannot be null or empty.");
+            if (password.Length < 4)
+                throw new ArgumentException("Password must be at least 4 characters long.");
+        }
     }
 
     static class UserManager
     {
         private static User?[] _users = new User?[10];
 
-        public static int Register(User u)
+        public static int Register(User? user)
         {
-            /* funqciam unda modzebnos _users masivshi pirveli tavisufali elementi (anu elementi
-* romlis mnishvnelobac null-is tolia) da mianichos mas gadmocemuli useris obieqti (parametri u).
-* oghond, unda gaitvaliswinos shemdegi pirobebi:
-* 1. gadmocemul parametrshi uechveli unda iyos username da paroli.
-*    tu parametrebi araa mowodebuli, shewyvitos registracia da daabrunos -1.
-* 2. gadaamowmos rom username unikaluri iyos, anu tu romelime elements gaachnia igive saxelis username
-*    shewyvitos registracia da daabrunos -2.
-* 3. tu masivshi agharaa carieli elementebi (anu sheivso 10ive), mashin daabrunos -3.
-* tu arcerti zeda shemtxveva ar moxda daaregistriros momxmarebeli (mianichos masivis elements)
-* da daabrunos 0.
-*/
+            if (user == null)
+                return -1;
 
-            // 1. username ან password არ არის მითითებული
-            if (string.IsNullOrEmpty(u.Username) || string.IsNullOrEmpty(u.Password))       return -1;
-            
-            for (int i = 0; i < _users.Length; i++)
-            {
-                // 2. username უკვე არსებობს
-                if (_users[i] != null &&
-                    _users[i].Username == u.Username)                  return -2;
-                
-                // 3. ვიპოვოთ პირველი ცარიელი ადგილი
-                if (_users[i] == null)
-                {
-                    _users[i] = u;
-                    return 0;
-                }
-            }
+            if (UserExists(user.Username))
+                return -2;
 
-            // 4. მასივი სავსეა
-            return -3;
+            int emptyIndex = GetEmptySlotIndex();
+            // Modify Systems so if there is no empty slot, it should add a new slot dynamically.
+            // For now, we return -3 to indicate no available slots.
+            if (emptyIndex == -1)
+                Resize();
+                emptyIndex = GetEmptySlotIndex();                // before there was 'return -3'
+
+            _users[emptyIndex] = user;
+            return 0;
         }
 
-        public static bool Login(string username, string password)
+        private static void Resize()
         {
-            /* funqciam unda modzebnos arsebobs tu ara _users masivshi chanaweri (elementi),
-* romelsac gaachnia igive Username da Paroli rac gadmogvces parametrebshi.
-* tu aseti chanaweri ipova daabrunos true, winaaghmdeg shemtxvevashi false. */
+            User?[] newArray = new User?[_users.Length + 1];
 
             for (int i = 0; i < _users.Length; i++)
             {
-                if (_users[i] != null &&
-                    _users[i].Username == username &&
-                    _users[i].Password == password)
-
-                {
-                    return true;
-                }
+                newArray[i] = _users[i];
             }
 
-            return false;
+            _users = newArray;
         }
+
+        public static bool Login(string username, string password) 
+            => GetUser(username)?.Password == password;
 
         public static bool UnRegister(string username)
         {
-            /*  funqciam unda modzebnos arsebobs tu ara _users masivshi chanaweri (elementi),
-* romelsac gaachnia igive Username rac gadmogvces parametrshi.
-* tu aseti chanaweri ipova masivis elementze mianichos null (rashic vgulisxmobt washlas)
-* da daabrunos true, winaaghmdeg shemtxvevashi false.*/
+            int index = GetUserIndex(username);
+            if (index == -1)
+                return false;
+            _users[index] = null;
+            return true;
+        }
 
+        private static int GetUserIndex(string username)
+        {
             for (int i = 0; i < _users.Length; i++)
             {
-                if (_users[i] != null &&
-                    _users[i].Username == username)
-                {
-                    _users[i] = null;
-                    return true;
-                }
-
+                if (_users[i]?.Username == username)
+                    return i;
             }
-
-            return false;
+            return -1;
         }
-    }
+
+        private static User? GetUser(string username)
+        {
+            int index = GetUserIndex(username);
+            return index != -1 
+                ? _users[index] 
+                : null;
+        }
+
+        private static bool UserExists(string username) 
+            => GetUserIndex(username) != -1;
+
+        private static int GetEmptySlotIndex()
+        {
+            for (int i = 0; i < _users.Length; i++)
+            {
+                if (_users[i] == null)
+                    return i;
+            }
+            return -1;
+        }
 }
