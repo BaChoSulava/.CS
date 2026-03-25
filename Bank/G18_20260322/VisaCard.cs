@@ -1,4 +1,4 @@
-﻿namespace G18_20260322;
+namespace G18_20260322;
 
 public class VisaCard
 {
@@ -16,7 +16,7 @@ public class VisaCard
     public DateTime ExpireDate { get; }
     public string CVV { get; }
     public decimal Balance { get; private set; }
-    public decimal WithdrawalTaxRate => 0.02m; // 20% tax on withdrawals
+    public decimal WithdrawalTaxRate => 0.02m; // 2% tax on withdrawals
                                                //TODO: Implement functionality for tax calculation while withdraw.
 
     internal void Deposit(decimal amount)
@@ -34,11 +34,14 @@ public class VisaCard
         {
             throw new ArgumentException("Withdrawal amount must be positive.");
         }
-        if (amount > Balance)
+
+        decimal tax = amount * WithdrawalTaxRate;   // TODO
+        decimal amountPlusTax = amount + tax;   // TODO
+        if (amountPlusTax > Balance)      // TODO
         {
             throw new InvalidOperationException("Insufficient funds.");
         }
-        Balance -= amount;
+        Balance -= amountPlusTax;      // TODO
     }
 
     private static void ValidateCardData(string cardNumber, string cardHolderName, DateTime expireDate, string cvv)
