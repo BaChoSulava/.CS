@@ -1,0 +1,14 @@
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\bin\Debug\net8.0\LearnExeption.exe
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\bin\Debug\net8.0\LearnExeption.deps.json
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\bin\Debug\net8.0\LearnExeption.runtimeconfig.json
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\bin\Debug\net8.0\LearnExeption.dll
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\bin\Debug\net8.0\LearnExeption.pdb
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\LearnExeption.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\LearnExeption.AssemblyInfoInputs.cache
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\LearnExeption.AssemblyInfo.cs
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\LearnExeption.csproj.CoreCompileInputs.cache
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\LearnExeption.dll
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\refint\LearnExeption.dll
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\LearnExeption.pdb
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\LearnExeption.genruntimeconfig.cache
+C:\Users\Lamzira\source\repos\DavDva\Exeption\LearnExeption\LearnExeption\obj\Debug\net8.0\ref\LearnExeption.dll
